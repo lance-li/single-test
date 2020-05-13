@@ -48,7 +48,7 @@ export async function mount({ data = {}, ROUTES, routerBase, state,container } =
     render: h => h(App, {
       props: {...data, ...state }
     })
-  }).$mount( '#app'); //container ? container.querySelector('#app') :
+  }).$mount(container ? container.querySelector('#app') : '#app');
 }
 
 export async function unmount() {

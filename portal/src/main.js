@@ -3,7 +3,7 @@
 import 'core-js/stable/symbol';
 import 'core-js/stable/string/starts-with';
 import 'core-js/web/url';*/
-
+/*'@vue/cli-plugin-babel/preset',*/
 import Vue from 'vue'
 import App from './App.vue'
 import router from './router'
