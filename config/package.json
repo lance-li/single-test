@@ -1,0 +1,16 @@
+{
+  "name": "micro-frontends",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "init": "node install.js",
+    "cinit": "node c-install.js",
+    "serve": "node start.js",
+    "build": "node build.js",
+    "lint": "vue-cli-service lint"
+  },
+  "devDependencies": {},
+  "dependencies": {
+
+  }
+}
