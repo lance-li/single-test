@@ -19,10 +19,41 @@ import {
 } from "qiankun";
 import apiDataFilter from "./utils/apiDataFilter";
 import mfeList from './mfe'
-
-
+import {fetch as fetchPolyfill} from 'whatwg-fetch'
 Vue.config.productionTip = false
+/*import {importEntry} from './index'
 
+const requestIdleCallback =
+    window.requestIdleCallback ||
+    function requestIdleCallback(cb) {
+      const start = Date.now();
+      return setTimeout(() => {
+        cb({
+          didTimeout: false,
+          timeRemaining() {
+            return Math.max(0, 50 - (Date.now() - start));
+          },
+        });
+      }, 1);
+    };
+
+function prefetch(entry, opts) {
+  console.log('IE-----------')
+
+requestIdleCallback( async () => {
+  console.log('IE-----------2')
+  const { getExternalScripts, getExternalStyleSheets } = await importEntry(entry, opts);
+  requestIdleCallback(getExternalStyleSheets);
+  requestIdleCallback(getExternalScripts);
+})
+
+}*/
+
+
+//prefetch('//10.129.222.127:8091',{fetch:(url)=>fetchPolyfill(url)})
+
+//importEntry('//10.129.222.127:8091',{fetch:(url)=>fetchPolyfill(url)})
+/*fetchPolyfill('//10.129.222.127:8091').then(response => response.text()).then(html=>{})*/
 
 let app = null;
 
@@ -81,7 +112,7 @@ function registerMicro(list) {
       entry: item.entry,
       //render,
       container:'#subAppLayout',
-      activeRule: item.routerBase,
+      activeRule: genActiveRule(item.routerBase),
       props: { ...msg, ROUTES: item.children, routerBase: item.routerBase }
     })
     if (item.defaultRegister) defaultApp = item.routerBase;
@@ -112,7 +143,9 @@ function registerMicro(list) {
   runAfterFirstMounted((app) => {
     console.log(app,'runAfterFirstMounted')
   });
-  start({ prefetch: true ,sandbox:{strictStyleIsolation: true}});
+
+  start({ prefetch: true ,sandbox:{strictStyleIsolation: true},fetch:(url,...args)=>fetchPolyfill(url,...args)});
+
   addGlobalUncaughtErrorHandler(event => console.log('--------',event));
 }
 
@@ -125,7 +158,11 @@ if (isProd){
     registerMicro(result)
   })
 }else {
-  registerMicro(list)
+  try {
+    registerMicro(list)
+  }catch (e) {
+    console.log('e---------',e)
+  }
 }
 
 /*new Vue({

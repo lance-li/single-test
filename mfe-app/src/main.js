@@ -6,12 +6,7 @@ import store from './store'
 import "./public-path";
 
 Vue.config.productionTip = false
-
-/*new Vue({
-  router,
-  store,
-  render: h => h(App)
-}).$mount('#app')*/
+console.log('--------------------------------------')
 
 let router = null;
 let instance = null;
@@ -19,9 +14,10 @@ const isMFE = process.env.NODE_ENV === 'mfe';
 const __qiankun__ = window.__POWERED_BY_QIANKUN__;
 
 
-export async function bootstrap({components, utils, emitFnc, pager, actions }) {
+export async function bootstrap() {
+  console.log('bootstrap')
 
-  // 注册主应用下发的组件
+  // 注册主应用下发的组件 components, utils, emitFnc, pager, actions
 /*  Vue.use(components);
   // 把工具函数挂载在vue $mainUtils对象
   Vue.prototype.$mainUtils = utils;
@@ -52,7 +48,7 @@ export async function mount({ data = {}, ROUTES, routerBase, state,container } =
     render: h => h(App, {
       props: {...data, ...state }
     })
-  }).$mount(container ? container.querySelector('#app') : '#app');
+  }).$mount( '#app'); //container ? container.querySelector('#app') :
 }
 
 export async function unmount() {
