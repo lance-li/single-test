@@ -34,6 +34,7 @@ module.exports = {
     }
   },
   // 自定义webpack配置
+
   configureWebpack: {
    // entry:["whatwg-fetch","./src/main.js"],
     resolve: {

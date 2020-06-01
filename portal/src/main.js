@@ -1,8 +1,10 @@
-
-/*import 'core-js/stable/promise';
+/*import '@babel/polyfill'
+import 'core-js/stable/promise';
 import 'core-js/stable/symbol';
 import 'core-js/stable/string/starts-with';
 import 'core-js/web/url';*/
+
+import {fetch as fetchPolyfill} from 'whatwg-fetch'
 /*'@vue/cli-plugin-babel/preset',*/
 import Vue from 'vue'
 import App from './App.vue'
@@ -19,7 +21,10 @@ import {
 } from "qiankun";
 import apiDataFilter from "./utils/apiDataFilter";
 import mfeList from './mfe'
-import {fetch as fetchPolyfill} from 'whatwg-fetch'
+
+
+/*import './listener'*/
+
 Vue.config.productionTip = false
 /*import {importEntry} from './index'
 

@@ -113,7 +113,8 @@ module.exports = {
       }
     }
   },
+  transpileDependencies:['single-spa'],
   configureWebpack:{
-     entry:["babel-polyfill","whatwg-fetch","./src/main.js"],
+     entry:["@babel/polyfill","promise-polyfill","url-polyfill","whatwg-fetch","./src/main.js"], //appendChild
   }
 }

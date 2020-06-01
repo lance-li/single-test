@@ -1,10 +1,12 @@
 module.exports = {
   presets: [
+    '@vue/cli-plugin-babel/preset',
     [
       "@babel/preset-env",
       {
         "targets": {
-          "browsers": ["IE 11, last 2 versions"]
+          "chrome": "58",
+          "ie": "11"
         }
       }
     ]

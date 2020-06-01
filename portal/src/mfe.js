@@ -1,7 +1,7 @@
 export default [
     {
         moduleName:'mfe-app',
-        entry:'//localhost:8091',
+        entry:'//10.129.222.17:8091',
         routerBase:'/mfe-app',
         defaultRegister:'',
         children:[],
